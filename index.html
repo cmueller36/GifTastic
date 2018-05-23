@@ -15,6 +15,36 @@
 
 <body>
 
+    <div class="container">
+        <div class="row">
+            <!--left side of page for buttons and gify-->
+            <div class="col-md-9">
+                <!--where the buttons will populate-->
+                <div class="row">
+                    <div class="col-md-12">
+                        <div id="buttons-view"></div>
+                    </div>
+                </div>
+            </div>
+            <!--right side of page for form input-->
+            <div class="col-md-3">
+                <div class="row">
+                    <div class="col-md-12">
+                        <form>
+                            <div class="form-group">
+                                <label for="animalinput">Add Animal</label>
+                                <input type="text" class="form-control" id="animalinput" aria-describedby="AddAnimal" placeholder="Enter Animal">
+                            </div>
+                            <button id="submitButton" type="submit" class="btn btn-primary">Submit</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.min.js"></script>
     <script src="javascript.js"></script>
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
         crossorigin="anonymous"></script>
