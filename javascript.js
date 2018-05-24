@@ -2,59 +2,73 @@
 //blank array to hold the animal names
 var Animals = [];
 
-// Generic function for capturing the movie name from the data-attribute
-function alertAnimalName() {
-    var animalName = $(this).attr("data-name");
+// generates the animal buttons
+function animalButtons() {
 
-    alert(animalName);
-}
-
-// Function for displaying movie data
-function renderButtons() {
-
-    // Deleting the movies prior to adding new movies
-    // (this is necessary otherwise we will have repeat buttons)
     $("#buttons-view").empty();
 
-    // Looping through the array of movies
     for (var i = 0; i < Animals.length; i++) {
 
-        // Then dynamicaly generating buttons for each movie in the array
-        // This code $("<button>") is all jQuery needs to create the start and end tag. (<button></button>)
-        var a = $("<button>");
-        // Adding a class of movie to our button
-        a.addClass("movie");
-        // Adding a data-attribute
-        a.attr("data-name", Animals[i]);
-        // Providing the initial button text
-        a.text(Animals[i]);
-        // Adding the button to the HTML
-        $("#buttons-view").append(a);
+        var anm = $("<button>");
+        anm.addClass("animal");
+        anm.attr("data-name", Animals[i]);
+        anm.text(Animals[i]);
+        $("#buttons-view").append(anm);
     }
 }
 
-// This function handles events where one button is clicked
+// when the submit button is clicked this will generate the animal buttons
 $("#submitButton").on("click", function (event) {
-    // Preventing the buttons default behavior when clicked (which is submitting a form)
+
     event.preventDefault();
-    // This line grabs the input from the textbox
     var animal = $("#animalinput").val().trim();
-
     console.log(animal);
-
-    // Adding the movie from the textbox to our array
     Animals.push(animal);
-
-    // Calling renderButtons which handles the processing of our movie array
-    renderButtons();
+    animalButtons();
 
 });
 
-// Function for displaying the movie info
-// We're adding a click event listener to all elements with the class "movie"
-// We're adding the event listener to the document because it will work for dynamically generated elements
-// $(".movies").on("click") will only add listeners to elements that are on the page at that time
-$(document).on("click", ".movie", alertAnimalName);
+//clear the gifys and buttons
+$("#clearButton").on("click", function(event){
+    event.preventDefault();
+    $("#buttons-view").empty();
+    $(".item").empty();
+    Animals=[];
+    $("#animalinput").val('');
+})
 
-// Calling the renderButtons function to display the intial buttons
-renderButtons();
+var gifyData;
+var queryURL;
+
+$("body").on("click",".animal", function(event) {
+    event.preventDefault();
+    gifyData = $(this).attr("data-name");
+    console.log(gifyData);
+    queryURL = "https://api.giphy.com/v1/gifs/search?q=" +
+      gifyData + "&api_key=dc6zaTOxFJmzC&limit=1";
+    console.log(queryURL);
+   
+    $.ajax({
+        url: queryURL,
+        method: "GET"
+    })
+      .then(function(response) {
+        var results = response.data;
+        for (var i = 0; i < results.length; i++) {
+          var gifDiv = $("<div class='item'>");
+          var rating = results[i].rating;
+          var p = $("<p>").text("Rating: " + rating);
+          var animalImage = $("<img>");
+          animalImage.attr("src", results[i].images.fixed_height.url);
+          gifDiv.prepend(p);
+          gifDiv.prepend(animalImage);
+          $("#gify").prepend(gifDiv);
+        }
+      });
+});
+
+
+
+
+
+animalButtons();

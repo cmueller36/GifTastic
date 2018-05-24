@@ -21,8 +21,14 @@
             <div class="col-md-9">
                 <!--where the buttons will populate-->
                 <div class="row">
-                    <div class="col-md-12">
+                    <div class="col-md-12" id="myButtons">
                         <div id="buttons-view"></div>
+                    </div>
+                </div>
+                <!--where the gifys go-->
+                <div class="row">
+                    <div class="col-md-12" id="myGifys">
+                        <div id="gify"></div>
                     </div>
                 </div>
             </div>
@@ -37,21 +43,20 @@
                             </div>
                             <button id="submitButton" type="submit" class="btn btn-primary">Submit</button>
                         </form>
+                        <br>
+                        <button id="clearButton" type="button" class="btn btn-danger">Clear</button>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+    
 
 
-    <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.min.js"></script>
+    <script src="https://code.jquery.com/jquery.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/js/bootstrap.bundle.min.js"></script>
     <script src="javascript.js"></script>
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-        crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
-        crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-        crossorigin="anonymous"></script>
+   
 
 </body>
 
