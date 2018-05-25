@@ -24,6 +24,8 @@ $("#submitButton").on("click", function (event) {
     var animal = $("#animalinput").val().trim();
     Animals.push(animal);
     animalButtons();
+    $("#animalinput").val('');
+    $("#buttons-header").show();
 
 });
 
@@ -42,6 +44,7 @@ var queryURL;
 //creates the gify images when the submit button is clicked
 $("body").on("click",".animal", function(event) {
     event.preventDefault();
+    $("#gify-header").show();
     gifyData = $(this).attr("data-name");
     queryURL = "https://api.giphy.com/v1/gifs/search?q=" +
       gifyData + "&api_key=dc6zaTOxFJmzC&limit=1";
@@ -92,3 +95,5 @@ $("body").on("click","img", function(){
 
 
 animalButtons();
+$("#buttons-header").hide();
+$("#gify-header").hide();
