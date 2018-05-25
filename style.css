@@ -1,0 +1,21 @@
+body{
+    height: 100%;
+    width: 100%;
+}
+
+#buttons-view{
+    margin-top: 10%;
+}
+
+.animal{
+    margin-left: 2%;
+}
+
+.item{
+    margin-top: 10%;
+}
+
+.form-group{
+    height: 100%;
+    margin-top: 40%;
+}
