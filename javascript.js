@@ -22,7 +22,6 @@ $("#submitButton").on("click", function (event) {
 
     event.preventDefault();
     var animal = $("#animalinput").val().trim();
-    console.log(animal);
     Animals.push(animal);
     animalButtons();
 
@@ -40,13 +39,13 @@ $("#clearButton").on("click", function(event){
 var gifyData;
 var queryURL;
 
+//creates the gify images when the submit button is clicked
 $("body").on("click",".animal", function(event) {
     event.preventDefault();
     gifyData = $(this).attr("data-name");
-    console.log(gifyData);
     queryURL = "https://api.giphy.com/v1/gifs/search?q=" +
       gifyData + "&api_key=dc6zaTOxFJmzC&limit=1";
-    console.log(queryURL);
+
    
     $.ajax({
         url: queryURL,
@@ -59,13 +58,34 @@ $("body").on("click",".animal", function(event) {
           var rating = results[i].rating;
           var p = $("<p>").text("Rating: " + rating);
           var animalImage = $("<img>");
-          animalImage.attr("src", results[i].images.fixed_height.url);
+          animalImage.attr("src", results[i].images.fixed_height_still.url);
+          animalImage.attr("data-still", results[i].images.fixed_height_still.url);
+          animalImage.attr("data-animate", results[i].images.fixed_height.url);
+          animalImage.attr("data-state","still");
           gifDiv.prepend(p);
           gifDiv.prepend(animalImage);
           $("#gify").prepend(gifDiv);
         }
       });
 });
+
+
+//makes the gify images animate and go still on click
+$("body").on("click","img", function(){
+    var state = $(this).attr("data-state");
+    var animate = $(this).attr("data-animate");
+    var still = $(this).attr("data-still");
+
+    if(state === "still"){
+        $(this).attr("src",animate);
+        $(this).attr("data-state","animate");
+    }
+
+    else if (state === "animate"){
+        $(this).attr("src",still);
+        $(this).attr("data-state","still");
+    }
+})
 
 
 
